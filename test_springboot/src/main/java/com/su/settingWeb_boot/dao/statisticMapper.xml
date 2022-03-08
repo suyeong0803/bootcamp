@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "=//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace = "com.su.settingWeb_boot.dao.StatisticMapper">
+	<!-- 연도별 -->
+	<select id = "selectYearLogin" parameterType = "string" resultType = "hashMap">
+		select count(*) as totCnt
+		from statistc.requestinfo ri
+		where left(ri.createDate, 2) = #{year};
+	</select>
+	
+	<!-- 월별 -->
+	<select id ="selectMonthLogin" parameterType = "string" resultType = "hashMap">
+		select count(*) as totCnt
+		from statistc.requestinfo ri
+		where substring(ri.createDate, 3, 2) = #{month};
+	</select>
+	
+	<!-- 일자별 -->
+	<select id = "selectDayLogin" parameterType = "string" resultType = "hashMap">
+		select count(*) as totCnt
+		from statistc.requestinfo ri
+		where substring(ri.createDate, 5, 2) = #{day};
+	</select>
+	
+	<!-- 하루 평균 -->
+	<select id = "selectAvgLogin" parameterType = "string" resultType = "hashMap">
+		SELECT AVG(CNT) 
+		FROM (SELECT COUNT(*) AS CNT 
+				FROM STATISTC.REQUESTINFO 
+				GROUP BY CREATEDATE) T;
+	</select>
+	
+	<!-- 휴일 제외 -->
+	
+	<!-- 부서별 월별 -->
+	<select id = "selectHRMonthLogin" parameterType = "hashmap" resultType = "hashMap">
+		SELECT COUNT(*) as totCnt
+		FROM STATISTC.REQUESTINFO RI
+		JOIN STATISTC.USER US
+		ON RI.USERID = US.USERID
+		WHERE US.HR_ORGAN = #{hr} AND SUBSTR(RI.CREATEDATE, 3, 2) = #{month};
+	</select>
+</mapper>	
