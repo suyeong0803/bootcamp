@@ -6,9 +6,9 @@
    - 패키지 이름이 잘못되어 오류 발생
 
 3. 다중 파라미터
-  - 부서별 월별 로그인 수 검색 시 2개의 파라미터 필요
-  - Mapper.xml에서 parameterType = hashmap으로 두고 
-  - ServiceImpl에서 HashMap에 두 개의 String 저장한 뒤 map을 select문으로 전달
+   - 부서별 월별 로그인 수 검색 시 2개의 파라미터 필요
+   - Mapper.xml에서 parameterType = hashmap으로 두고 
+   - ServiceImpl에서 HashMap에 두 개의 String 저장한 뒤 map을 select문으로 전달
 
 4. 휴일 제외 로그인 수 검색 구현 아직
-  - 4주차에 제출 예정
+   - 4주차에 제출 예정
