@@ -1,10 +1,10 @@
-**ÃÑ ·Î±×ÀÎ ¼ö Á¶È¸ API ±¸Çö**
+**ì´ ë¡œê·¸ì¸ ìˆ˜ ì¡°íšŒ API êµ¬í˜„**
 ----
-  °Ë»ö ³âµµÀÇ ·Î±×ÀÎ ¼ö ¹İÈ¯.
+  ê²€ìƒ‰ ë…„ë„ì˜ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
 
 * **URL**
 
-  /login/:year
+  /sqlyearStatistic/:year
 
 * **Method:**
 
@@ -14,36 +14,145 @@
 
    **Required:**
  
-   `year=[integer]`
-
-* **Data Params**
-
-  None
+   `year=[String]`
 
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ year : 2020, cnt : 20 }`
+    **Content:** `{ totcnt : CNT, year: YEAR, is_success: true }`
  
 * **Error Response:**
 
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "Ã£À¸·Á´Â ³âµµ°¡ ³Ê¹« Å®´Ï´Ù." }`
+    **Content:** `{ totCnt : -999, year: YEAR, is_success: false }`
 
-  OR
+----
+  ê²€ìƒ‰ ì›”ë³„ì˜ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "¿äÃ»¿¡ ´ëÇÑ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù." }`
+* **URL**
 
-* **Sample Call:**
+  /sqlmonthStatistic/:month
 
-  ```javascript
-    $.ajax({
-      url: "/login/2020",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `month=[String]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ totcnt : CNT, month: MONTH, is_success: true }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ totCnt : -999, month: MONTH, is_success: false }`
+    
+
+----
+  ê²€ìƒ‰ ì¼ìë³„ì˜ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
+
+* **URL**
+
+  /sqldayStatistic/:day
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `day=[String]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ totcnt : CNT, day: DAY, is_success: true }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ totCnt : -999, day: DAY, is_success: false }`
+    
+----
+  í‰ê·  í•˜ë£¨ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
+
+* **URL**
+
+  /sqlavgStatistic/
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ AVG(CNT) : CNT, day: DAY, is_success: true }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ cnt : -999, is_success: false }`
+    
+----
+  íœ´ì¼ ì œì™¸ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
+
+* **URL**
+
+  /sqlHolYearStatistic/:year
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+   
+   `year=[String]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ totCount : CNT}`
+    
+
+----
+  ë¶€ì„œë³„ ì›”ë³„ì˜ ë¡œê·¸ì¸ ìˆ˜ ë°˜í™˜.
+
+* **URL**
+
+  /sqlHRmonthStatistic/:hr&month
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `hr=[String]` & `month=[String]`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ hr: HR, month: MONTH, totcnt : CNT, is_success: true }`
+ 
+* **Error Response:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ totCnt : -999, hr: HR, month: MONTH, is_success: false }`
