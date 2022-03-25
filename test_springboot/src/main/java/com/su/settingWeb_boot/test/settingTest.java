@@ -1,6 +1,7 @@
 package com.su.settingWeb_boot.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.su.settingWeb_boot.dto.StatisticDto;
 import com.su.settingWeb_boot.service.StatisticService;
  
 @Controller
@@ -48,6 +50,13 @@ public class settingTest {
 	}
 	
 	@ResponseBody
+	@RequestMapping("/sqlHolYearStatistic")
+	public HashMap<String, Object> avgHolYeartest(String year) throws Exception
+	{
+		return service.holYearloginNum(year);
+	}
+	
+	@ResponseBody
 	@RequestMapping("/sqlHRmonthStatistic")
 	public Map<String, Object> HRmonthsqltest(String hr, String month) throws Exception
 	{
@@ -55,19 +64,4 @@ public class settingTest {
 		return service.hrMonthloginNum(hr, month);
 	}
 	
-    
-    @RequestMapping("/test") 
-    public ModelAndView test() throws Exception{ 
-        ModelAndView mav = new ModelAndView("test"); 
-        mav.addObject("name", "devfunpj"); 
-        List<String> resultList = new ArrayList<String>(); 
-        resultList.add("!!!HELLO WORLD!!!"); 
-        resultList.add("설정 TEST!!!"); 
-        resultList.add("설정 TEST!!!"); 
-        resultList.add("설정 TEST!!!!!"); 
-        resultList.add("설정 TEST!!!!!!"); 
-        mav.addObject("list", resultList); 
-        return mav; 
-    }
- 
 }

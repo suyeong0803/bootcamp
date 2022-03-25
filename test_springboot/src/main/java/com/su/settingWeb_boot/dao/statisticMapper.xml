@@ -34,6 +34,9 @@
 	</select>
 	
 	<!-- 휴일 제외 -->
+	<select id = "selectExceptWeekend" parameterType =  "hashmap" resultType = "hashMap">
+		
+	</select>
 	
 	<!-- 부서별 월별 -->
 	<select id = "selectHRMonthLogin" parameterType = "hashmap" resultType = "hashMap">
@@ -42,5 +45,12 @@
 		JOIN STATISTC.USER US
 		ON RI.USERID = US.USERID
 		WHERE US.HR_ORGAN = #{hr} AND SUBSTR(RI.CREATEDATE, 3, 2) = #{month};
+	</select>
+	
+	<!-- 휴일 제외 -->
+	<select id = "selectHolYearLogin" parameterType = "string" resultType = "com.su.settingWeb_boot.dto.StatisticDto">
+		select left(ri.createDate,6) as createDate
+		from statistc.requestinfo ri
+		where left(ri.createDate, 2) = #{year};
 	</select>
 </mapper>	
